@@ -1,38 +1,52 @@
+class Cliente:
+    def __init__(self,endereco):
+        self.endereco=endereco
+        self.contas = []    
 
-class Conta:
-    def __init__(self):
-        self.agencia = "0001"   
-        self.conta = 0
-        self.lista_clientes=[]
-
-class Cliente(Conta):
-    
-    def __init__ (self,nome,endereco,conta):
-        super().__init__()
+class PessoaFisica(Cliente):
+    def __init__(self, nome, cpf, endereco):
+        super().__init__(endereco)
         self.nome= nome
-        self.endereco = endereco
+        self.cpf = cpf
+        self.agencia= "0001"
+        self.numeroconta=0
+        self.endereco=endereco
 
-    def criar_conta(self):
-        self.conta += 1
-        self.nome= input("Digite seu nome completo: \n")
-        self.endereco= input("Digite seu endereço completo: \n")
-        self.lista_clientes.append({'Nome':self.nome,'Endereco':self.endereco,'conta':self.conta,'agencia':self.agencia})
-        print("conta criada com sucesso!")
 
-    def exibir_lista_contas(self):
-        print(*self.lista_clientes, sep = "\n")
-    
+    def criarpessoa(self):
+        self.nome = str(input("nome:\n"))
+        self.cpf = str(input("cpf:\n"))
+        self.numeroconta += 1
+        self.contas.append({'nome':self.nome,'cpf':self.cpf,'numeroconta':self.numeroconta,'agencia':self.agencia})
+        print(self.contas)
 
-#    def __str__ (self):
-#        return f"{self.__class__.__name__}:{', '.join([f'{chave}={valor}'for chave, valor in self.__dict__.items()])}"
-while True:
-    opcao_selecionada= int(input("opcao:\n"))
-    if opcao_selecionada == 1:
-        cliente = Cliente("","","")
-        cliente.criar_conta()
-        print(f'{cliente.nome},{cliente.endereco},{cliente.conta}')
-    elif opcao_selecionada == 2:
-        cliente = Cliente("","","")
-        cliente.exibir_lista_contas()
-    else:
-        break
+class Conta(Cliente):
+
+    def __init__(self, endereco):
+        super().__init__(endereco)
+        
+
+    def listar_contas(self):
+        print(self.contas)
+        
+def main():
+
+    while True:
+        opcao = int(input('''
+        [1]criar cliente
+        [2]sair
+        [3]listar contas
+        '''))
+        if opcao == 1:
+
+            cliente = PessoaFisica("","","")
+            cliente.criarpessoa()
+
+        elif opcao == 3:
+            cliente=Conta()
+            cliente.listar_contas
+
+        elif opcao == 2:
+            break
+
+main()
