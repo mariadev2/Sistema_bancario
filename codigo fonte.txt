@@ -1,0 +1,73 @@
+
+class Conta:
+    def __init__(self,cliente,numero,historico):
+        self.agencia = "0001"   
+        self.conta = 0
+        self.saldo= 0
+        self.cliente = cliente
+        self.numero= numero
+        self.historico = historico
+
+    def adicionar_conta(self):
+        self.conta += 1
+        return self.conta
+
+    def nova_conta(self):
+        self.nome= input("Digite seu nome completo: \n")
+        self.endereco= input("Digite seu endereço completo: \n")
+        self.lista_clientes.append({'Nome':self.nome,'Endereco':self.endereco,'conta':self.conta,'agencia':self.agencia})
+        print("conta criada com sucesso!")
+
+
+    def listar_contas(self):
+        print(self.lista_clientes)
+
+
+class conta_corrente(Conta):
+   def __init__(self, cliente, numero, historico,limite,limite_saque):
+       super().__init__(cliente, numero, historico)
+       self.limite =limite
+       self.limite_saque =limite_saque
+
+class Cliente(Conta):
+    
+    def __init__ (self,endereco,cliente,numero,historico):
+        super().__init__(endereco,cliente,numero,historico)
+        self.cliente = cliente
+        self.nomero= numero
+        self.historico = historico
+        self.endereco = endereco
+
+
+class pessoa_fisica(Cliente):
+    def __init__(self, nome,cpf,data_nascimento, endereco, conta,cliente,numero,historico):
+        super().__init__(endereco,cliente,numero,historico)
+        self.nome= nome
+        self.cpf= cpf
+        self.data_nascomento= data_nascimento
+
+def menu():
+    menu = '''
+    [1]Criar conta
+    [2]listar contas
+    []Sacar
+    []Depositar
+    []
+    [5]Sair
+    '''
+    return menu
+def main():
+    while True:
+        menu()
+        opcao = int(input("opcao;\n"))
+        if opcao == 1:
+            cliente = Conta("","","")
+            cliente.nova_conta()
+        elif opcao == 2:
+            cliente = Conta("","","")
+            cliente.listar_contas()
+        else:
+            break
+
+
+main()
