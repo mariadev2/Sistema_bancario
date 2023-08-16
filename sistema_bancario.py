@@ -2,7 +2,7 @@ from abc import ABC, abstractclassmethod, abstractproperty
 from datetime import datetime
 import textwrap
 
-class Cliente:
+class Client2e:
     def __init__(self,endereco):
         self.endereco = endereco
         self.contas = []
